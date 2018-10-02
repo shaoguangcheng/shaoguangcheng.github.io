@@ -4,7 +4,7 @@ title:     	metapath2vec
 subtitle:   一种异构图 embedding 算法
 date:       2018-10-02
 author:     Shaoguang Cheng
-header-img: img/post-bg-graph-embdding.png
+header-img: img/metapath2vec/post-bg-graph-embdding.png
 catalog: true
 tags:
     - graph embedding
@@ -22,10 +22,10 @@ tags:
 ## 问题定义
 
 ### 异构图网络定义
-![异构图定义](../img/metapath2vec/h-graph-def.png)
+![异构图定义](img/metapath2vec/h-graph-def.png)
 
 ### 异构图表示学习定义
-![异构图学习定义](../img/metapath2vec/h-graph-rep-learning-def.png)
+![异构图学习定义](img/metapath2vec/h-graph-rep-learning-def.png)
 
 ## metapath2vec
 metapath2vec 在整体的流程上和 Deep Walk 以及 node2vec 是一致的，都是先通过 random walk 的方式得到每一个节点的上下文节点，然后利用 skip gram 的方式进行节点表示的学习。在 metapath2vec 中，使用了一种 biased random walk。
@@ -40,7 +40,7 @@ metapath2vec 在整体的流程上和 Deep Walk 以及 node2vec 是一致的，�
 文章中提出了使用基于 metapath 的随机游走，metapath 定义了一种由图中节点类型组成的路径模式。例如在论文引用网络中，有作者(A)、论文(P)、机构(O)三种节点，metapath "APA"定义了一种 作者-论文-论文 的路径模式。
 
 给定一个异构网络 G = (V, E, T) 和 metapath, 随机游走的方式定义为：
-![metapath-based-random-walk](../img/metapath2vec/metapath-based-rw.png)
+![metapath-based-random-walk](img/metapath2vec/metapath-based-rw.png)
 
 基于 metapath 的随机游走策略能确保不同类型的节点的语义相关性体现在生成的上下文路径中。metapath2vec 算法就是将上述生成的上下文序列输入到标准的 skip gram 中，学习各节点的低维稠密向量表示。
 
