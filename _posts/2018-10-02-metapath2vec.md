@@ -4,7 +4,7 @@ title:     	metapath2vec
 subtitle:   一种异构图 embedding 算法
 date:       2018-10-02
 author:     Shaoguang Cheng
-header-img: img/metapath2vec-post-bg-graph-embdding.png
+header-img: img/metapath2vec-post-bg-graph-embedding.png
 catalog: true
 tags:
     - graph embedding
