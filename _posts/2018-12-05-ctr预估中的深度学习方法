@@ -1,0 +1,14 @@
+
+1. FNN
+2. WDL
+3. NFM
+4. AFM
+5. DCN
+6. PNN, Product-based Neural Networks
+7. DeepFM
+8. DeepMLR (使用softmax分片，每一个piece里面使用一个WDL)
+9. XDeepFM
+10. DIN 
+11. DIEN
+
+reference: https://blog.csdn.net/dengxing1234/article/details/79916532
