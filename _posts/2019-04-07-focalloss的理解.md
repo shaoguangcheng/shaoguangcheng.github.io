@@ -10,4 +10,39 @@
       
       若为负样本时有同样结论。
   
+  4. 给出一个tensorflow的focalloss实现：
+  
+  
+  ```
+  def focal_loss_sigmoid_on_2_classification(labels, logtis, alpha=0.5, gamma=2):
+	"""
+	description: 
+		基于logtis输出的2分类focal loss计算
+	计算公式：
+		pt = p if label=1, else pt = 1-p； p表示判定为类别1（正样本）的概率
+		focal loss = - alpha * (1-pt) ** (gamma) * log(pt)
+	
+	Args:
+		labels: [batch_size], dtype=int32，值为0或者1
+		logits: [batch_size], dtype=float32，输入为logits值
+		alpha: 控制样本数目的权重，当正样本数目大于负样本时，alpha<0.5，反之，alpha>0.5。
+		gamma：focal loss的超参数
+	Returns:
+		tensor: [batch_size]
+	"""
+	y_pred = tf.nn.sigmoid(logits) # 转换成概率值
+	labels = tf.to_float(labels) # int -> float
+
+	"""
+	if label=1, loss = -alpha * ((1 - y_pred) ** gamma) * tf.log(y_pred)
+	if label=0, loss = - (1 - alpha) * (y_pred ** gamma) * tf.log(1 - y_pred)
+	alpha=0.5，表示赋予不考虑数目差异，此时权重是一致的
+	将上面两个标签整合起来，得到下面统一的公式：
+		focal loss = -alpha * (1-p)^gamma * log(p) - (1-apha) * p^gamma * log(1-p)
+	"""
+	loss = -labels * alpha * ((1 - y_pred) ** gamma) * tf.log(y_pred) \
+		-(1 - labels) * (1 - alpha) * (y_pred ** gamma) * tf.log(1 - y_pred)
+	return loss
+
+  ```
  
